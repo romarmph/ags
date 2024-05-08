@@ -1,0 +1,38 @@
+* {
+  all: unset;
+  font-family: "sans-serif";
+  color: #bbc2cf;
+}
+
+.bar {
+  background: rgba(19, 20, 30, 0.8);
+}
+
+/* NOTE: ---------------------------------------------> Left Section */
+.app_grid_btn {
+  padding: 0 8px 0 8px;
+  border-radius: 4px;
+  font-size: 18px;
+}
+.app_grid_btn:hover {
+  background: #262738;
+}
+
+.workspace_indicator {
+  border-radius: 8px;
+  padding: 12px;
+}
+.workspace_indicator .workspace {
+  background: #393a52;
+  border-radius: 12px;
+  min-width: 8px;
+  min-height: 8px;
+  transition: min-height 100ms cubic-bezier(1, 0, 0, 1);
+}
+.workspace_indicator .workspace.active {
+  background: #bbc2cf;
+  min-height: 8px;
+}
+.workspace_indicator .workspace:hover {
+  background: #393a52;
+}

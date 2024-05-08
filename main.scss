@@ -1,0 +1,73 @@
+$bg : rgba(19, 20, 30, 0.8);
+$bg1 : rgba(19, 20, 30, 0.75);
+$bg2 : rgba(19, 20, 30, 0.5);
+$fg : #bbc2cf;
+$fgDark1: #262738;
+$fgDark2: #393a52;
+$fgDark3: #4b4d6b;
+$yellow : #b89933;
+$cyan : #20a3c7;
+$darkblue : #081633;
+$green : #45deaf;
+$orange : #FF8800;
+$violet : #a9a1e1;
+$magenta : #c678dd;
+$blue : #2b96fb;
+$red : #ec5f67;
+
+$borderRadius1: 8px;
+$borderRadius2: 4px;
+$borderRadius3: 2px;
+
+* {
+	all: unset;
+	font-family: "sans-serif";
+	color: $fg;
+}
+
+@mixin section {
+	border-radius: 8px;
+	padding: 12px;
+}
+
+@mixin button {
+	&:hover {
+		background: $yellow;
+	}
+}
+
+.bar {
+	background: $bg;
+}
+
+/* NOTE: ---------------------------------------------> Left Section */
+.app_grid_btn {
+	padding: 0 8px 0 8px;
+	border-radius: $borderRadius2;
+	font-size: 18px;
+
+	&:hover {
+		background: $fgDark1;
+	}
+}
+
+.workspace_indicator {
+	@include section;
+
+	& .workspace {
+		background: $fgDark2;
+		border-radius: 12px;
+		min-width: 8px;
+		min-height: 8px;
+		transition: min-height 100ms cubic-bezier(1, 0, 0, 1);
+
+		&.active {
+			background: $fg;
+			min-height: 8px;
+		}
+
+		&:hover {
+			background: $fgDark2;
+		}
+	}
+}
