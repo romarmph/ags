@@ -15,7 +15,15 @@
   font-size: 18px;
 }
 .app_grid_btn:hover {
-  background: #262738;
+  background: rgba(57, 58, 82, 0.5);
+}
+
+.time_indicator {
+  padding: 0 8px 0 8px;
+  border-radius: 4px;
+}
+.time_indicator:hover {
+  background: rgba(57, 58, 82, 0.5);
 }
 
 .workspace_indicator {
@@ -23,7 +31,7 @@
   padding: 12px;
 }
 .workspace_indicator .workspace {
-  background: #393a52;
+  background: rgba(57, 58, 82, 0.5);
   border-radius: 12px;
   min-width: 8px;
   min-height: 8px;
@@ -34,5 +42,15 @@
   min-height: 8px;
 }
 .workspace_indicator .workspace:hover {
-  background: #393a52;
+  background: rgba(57, 58, 82, 0.5);
+}
+
+/* NOTE: ---------------------------------------------> Left Section */
+.control_button {
+  padding: 0 8px 0 8px;
+  border-radius: 4px;
+  font-size: 18px;
+}
+.control_button:hover {
+  background: rgba(57, 58, 82, 0.5);
 }

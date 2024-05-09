@@ -2,9 +2,11 @@ $bg : rgba(19, 20, 30, 0.8);
 $bg1 : rgba(19, 20, 30, 0.75);
 $bg2 : rgba(19, 20, 30, 0.5);
 $fg : #bbc2cf;
-$fgDark1: #262738;
-$fgDark2: #393a52;
-$fgDark3: #4b4d6b;
+
+// Convert all fgDark to rgba
+$fgDark1: rgba(38, 39, 56, 0.5);
+$fgDark2: rgba(57, 58, 82, 0.5);
+$fgDark3: rgba(75, 77, 107, 0.5);
 $yellow : #b89933;
 $cyan : #20a3c7;
 $darkblue : #081633;
@@ -32,7 +34,7 @@ $borderRadius3: 2px;
 
 @mixin button {
 	&:hover {
-		background: $yellow;
+		background: $fgDark2;
 	}
 }
 
@@ -46,9 +48,14 @@ $borderRadius3: 2px;
 	border-radius: $borderRadius2;
 	font-size: 18px;
 
-	&:hover {
-		background: $fgDark1;
-	}
+	@include button;
+}
+
+.time_indicator {
+	padding: 0 8px 0 8px;
+	border-radius: $borderRadius2;
+
+	@include button;
 }
 
 .workspace_indicator {
@@ -70,4 +77,14 @@ $borderRadius3: 2px;
 			background: $fgDark2;
 		}
 	}
+}
+
+
+/* NOTE: ---------------------------------------------> Left Section */
+.control_button {
+	padding: 0 8px 0 8px;
+	border-radius: $borderRadius2;
+	font-size: 18px;
+
+	@include button;
 }
