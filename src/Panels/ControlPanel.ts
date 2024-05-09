@@ -2,6 +2,8 @@ import PanelController from "src/Utils/PanelController";
 import BrightnessService from "src/Services/Brightness";
 import { allRevealers, controlPanelRevealer } from "./revealers";
 import UserHeader from "src/Panels/Components/UserHeader";
+import MusicPlayer from "src/Panels/Components/MusicPlayer";
+import WifiBluetooth from "./Components/WifiBluetooth";
 
 const AudioService = await Service.import("audio");
 
@@ -45,15 +47,17 @@ export default function() {
             vpack: "center",
             children: [
               UserHeader(),
-              Slider({
-                icon: "display-brightness-symbolic",
-                value: BrightnessService.bind("screen_value"),
-                onChange: ({ value }) => BrightnessService.screen_value = value,
-              }),
+              WifiBluetooth(),
+              MusicPlayer(),
               Slider({
                 icon: "audio-volume-high-symbolic",
                 value: AudioService["speaker"].bind("volume"),
                 onChange: ({ value }) => AudioService["speaker"].volume = value,
+              }),
+              Slider({
+                icon: "display-brightness-symbolic",
+                value: BrightnessService.bind("screen_value"),
+                onChange: ({ value }) => BrightnessService.screen_value = value,
               }),
             ],
           }),

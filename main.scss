@@ -38,6 +38,12 @@ $borderRadius3: 4px;
 	}
 }
 
+@mixin panelChild {
+	background: rgba(69, 69, 89, 0.5);
+	border-radius: $borderRadius2;
+	border: 1px solid rgba(187, 194, 207, 0.2);
+}
+
 .bar {
 	background: $bg;
 }
@@ -134,9 +140,7 @@ $borderRadius3: 4px;
 
 .slider-container {
 	padding: 16px 8px;
-	background: rgba(69, 69, 89, 0.5);
-	border: 1px solid rgba(187, 194, 207, 0.2);
-	border-radius: $borderRadius2;
+	@include panelChild;
 }
 
 .slider {
@@ -157,8 +161,38 @@ $borderRadius3: 4px;
 }
 
 .user_box {
-	background: rgba(69, 69, 89, 0.5);
+	@include panelChild;
 	padding: 8px;
+}
+
+.music_player {
+	@include panelChild;
+	padding: 8px;
+
+}
+
+.progress {
 	border-radius: $borderRadius2;
-	border: 1px solid rgba(187, 194, 207, 0.2);
+	padding-bottom: 4px;
+
+	& trough {
+		border-radius: 8px;
+		background: $fgDark3;
+
+		& progress {
+			background: $fg;
+			border-radius: 8px;
+		}
+	}
+}
+
+.connection_box {
+	& .connection_button {
+		@include panelChild;
+		padding: 0 8px 0 8px;
+		border-radius: $borderRadius2;
+		font-size: 18px;
+
+		@include button;
+	}
 }
