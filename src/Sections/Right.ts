@@ -1,8 +1,10 @@
+import Calendar from "src/Panels/Calendar";
 const BluetoothService = await Service.import("bluetooth");
 const NotificationService = await Service.import("notifications");
 
 
 const TimeIndicator = Widget.Button({
+	attribute: Calendar(),
 	className: "time_indicator",
 	hpack: "center",
 	child: Widget.Label().poll(
@@ -12,6 +14,7 @@ const TimeIndicator = Widget.Button({
 			self.set_text(date.toLocaleString().split(", ").join(" | "));
 		}
 	),
+	onClicked: (self) => self.attribute.toggle(),
 });
 
 const ControlPanelIndicator = Widget.Button({

@@ -183,7 +183,6 @@ const battery = await Service.import("battery")
 // }
 //
 import Bar from "./src/Bar"
-
 App.config({
   style: App.configDir + "/out.css",
   windows: [

@@ -8,6 +8,28 @@
   background: rgba(19, 20, 30, 0.8);
 }
 
+.panel {
+  background: rgba(19, 20, 30, 0.75);
+}
+
+.calendar {
+  color: #bbc2cf;
+  border-radius: 8px;
+}
+.calendar.hightlight {
+  color: #b89933;
+}
+.calendar.selected {
+  color: #20a3c7;
+}
+.calendar button {
+  color: #FF8800;
+  background: #2b96fb;
+}
+.calendar button:hover {
+  background: rgba(19, 20, 30, 0.5);
+}
+
 /* NOTE: ---------------------------------------------> Left Section */
 .app_grid_btn {
   padding: 0 8px 0 8px;

@@ -42,6 +42,32 @@ $borderRadius3: 2px;
 	background: $bg;
 }
 
+.panel {
+	background: $bg1;
+}
+
+.calendar {
+	color: $fg;
+	border-radius: $borderRadius1;
+
+	&.hightlight {
+		color: $yellow;
+	}
+
+	&.selected {
+		color: $cyan;
+	}
+
+	& button {
+		color: $orange;
+		background: $blue;
+
+		&:hover {
+			background: $bg2;
+		}
+	}
+}
+
 /* NOTE: ---------------------------------------------> Left Section */
 .app_grid_btn {
 	padding: 0 8px 0 8px;
