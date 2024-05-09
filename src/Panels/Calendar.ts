@@ -9,14 +9,13 @@ export default function() {
       layer: "overlay",
       anchor: ['bottom', 'right'],
       child: Widget.Box({
-        css: 'padding: 0.1px',
+        className: "panel-container",
         child: Widget.Revealer({
           revealChild: calendarRevealer.bind(),
           transition: 'slide_up',
           transitionDuration: 300,
           child: Widget.Calendar({
             className: "panel calendar",
-            css: "padding: 10px",
             showDayNames: true,
             showWeekNumbers: false,
           }),

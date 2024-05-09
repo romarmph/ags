@@ -18,8 +18,8 @@ $blue : #2b96fb;
 $red : #ec5f67;
 
 $borderRadius1: 8px;
-$borderRadius2: 4px;
-$borderRadius3: 2px;
+$borderRadius2: 6px;
+$borderRadius3: 4px;
 
 * {
 	all: unset;
@@ -42,31 +42,19 @@ $borderRadius3: 2px;
 	background: $bg;
 }
 
+.panel-container {
+	padding: 8px;
+}
+
 .panel {
-	background: $bg1;
-}
-
-.calendar {
-	color: $fg;
+	background: rgba(35, 35, 46, 0.66);
+	padding: 16px;
 	border-radius: $borderRadius1;
-
-	&.hightlight {
-		color: $yellow;
-	}
-
-	&.selected {
-		color: $cyan;
-	}
-
-	& button {
-		color: $orange;
-		background: $blue;
-
-		&:hover {
-			background: $bg2;
-		}
-	}
+	border: 1px solid rgba(187, 194, 207, 0.2);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+
 
 /* NOTE: ---------------------------------------------> Left Section */
 .app_grid_btn {
@@ -106,11 +94,71 @@ $borderRadius3: 2px;
 }
 
 
-/* NOTE: ---------------------------------------------> Left Section */
+/* NOTE: ---------------------------------------------> Right Section */
+
+.calendar {
+	color: $fg;
+	border-radius: $borderRadius1;
+
+	&.hightlight {
+		color: $yellow;
+	}
+
+	&.selected {
+		color: $cyan;
+	}
+
+	& button {
+		color: $orange;
+		background: $blue;
+
+		&:hover {
+			background: $bg2;
+		}
+	}
+}
+
 .control_button {
 	padding: 0 8px 0 8px;
 	border-radius: $borderRadius2;
 	font-size: 18px;
 
 	@include button;
+}
+
+.control-panel {
+	padding: 12px;
+	border-radius: $borderRadius1;
+	min-width: 300px;
+}
+
+.slider-container {
+	padding: 16px 8px;
+	background: rgba(69, 69, 89, 0.5);
+	border: 1px solid rgba(187, 194, 207, 0.2);
+	border-radius: $borderRadius2;
+}
+
+.slider {
+	& trough {
+		background-color: $fgDark3;
+		border-radius: $borderRadius1;
+	}
+
+	& highlight {
+		min-height: 16px;
+		background-color: $fg;
+		border-radius: $borderRadius1;
+	}
+}
+
+.face {
+	border-radius: 50%;
+}
+
+.user_box {
+	background: rgba(69, 69, 89, 0.5);
+	padding: 8px;
+	border-radius: $borderRadius2;
+	border: 1px solid rgba(187, 194, 207, 0.2);
 }

@@ -2,9 +2,9 @@ import Left from "./Sections/Left";
 import Center from "./Sections/Center";
 import Right from "./Sections/Right";
 
-export default function(monitor = 0) {
+export default function (monitor = 0) {
   return Widget.Window({
-    name: `bar-${monitor}`, // name has to be unique
+    name: `bar-${monitor}`,
     class_name: "bar",
     monitor,
     anchor: ["bottom", "left", "right"],
@@ -14,5 +14,5 @@ export default function(monitor = 0) {
       center_widget: Center(),
       end_widget: Right(),
     }),
-  })
+  });
 }

@@ -8,32 +8,22 @@
   background: rgba(19, 20, 30, 0.8);
 }
 
-.panel {
-  background: rgba(19, 20, 30, 0.75);
+.panel-container {
+  padding: 8px;
 }
 
-.calendar {
-  color: #bbc2cf;
+.panel {
+  background: rgba(35, 35, 46, 0.66);
+  padding: 16px;
   border-radius: 8px;
-}
-.calendar.hightlight {
-  color: #b89933;
-}
-.calendar.selected {
-  color: #20a3c7;
-}
-.calendar button {
-  color: #FF8800;
-  background: #2b96fb;
-}
-.calendar button:hover {
-  background: rgba(19, 20, 30, 0.5);
+  border: 1px solid rgba(187, 194, 207, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* NOTE: ---------------------------------------------> Left Section */
 .app_grid_btn {
   padding: 0 8px 0 8px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 18px;
 }
 .app_grid_btn:hover {
@@ -42,7 +32,7 @@
 
 .time_indicator {
   padding: 0 8px 0 8px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 .time_indicator:hover {
   background: rgba(57, 58, 82, 0.5);
@@ -67,12 +57,64 @@
   background: rgba(57, 58, 82, 0.5);
 }
 
-/* NOTE: ---------------------------------------------> Left Section */
+/* NOTE: ---------------------------------------------> Right Section */
+.calendar {
+  color: #bbc2cf;
+  border-radius: 8px;
+}
+.calendar.hightlight {
+  color: #b89933;
+}
+.calendar.selected {
+  color: #20a3c7;
+}
+.calendar button {
+  color: #FF8800;
+  background: #2b96fb;
+}
+.calendar button:hover {
+  background: rgba(19, 20, 30, 0.5);
+}
+
 .control_button {
   padding: 0 8px 0 8px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 18px;
 }
 .control_button:hover {
   background: rgba(57, 58, 82, 0.5);
+}
+
+.control-panel {
+  padding: 12px;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.slider-container {
+  padding: 16px 8px;
+  background: rgba(69, 69, 89, 0.5);
+  border: 1px solid rgba(187, 194, 207, 0.2);
+  border-radius: 6px;
+}
+
+.slider trough {
+  background-color: rgba(75, 77, 107, 0.5);
+  border-radius: 8px;
+}
+.slider highlight {
+  min-height: 16px;
+  background-color: #bbc2cf;
+  border-radius: 8px;
+}
+
+.face {
+  border-radius: 50%;
+}
+
+.user_box {
+  background: rgba(69, 69, 89, 0.5);
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(187, 194, 207, 0.2);
 }
