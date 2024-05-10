@@ -50,7 +50,6 @@ export default function() {
             children: [
               UserHeader(),
               WifiBluetooth(),
-              MusicPlayer(),
               Mpris.players.length > 0 ? MusicPlayer() : Widget.Box(),
               Slider({
                 icon: "audio-volume-high-symbolic",

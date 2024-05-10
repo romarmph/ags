@@ -7,12 +7,12 @@ const SSID = Variable("No connection", {
 
 const BLUETOOTH = Variable("No device connected", {
   poll: [1000, () => {
-    if (BluetoothService.connected_devices.length) return "No device";
-    return BluetoothService.connected_devices.toString();
+    if (!BluetoothService.connected_devices.length) return "No device";
+    return BluetoothService.connected_devices.map(device => device.name).join(", ");
   }],
 })
 
-const Button = ({ icon, label, connection, onClicked }) => {
+const Button = ({ icon, label, onClicked, wlabel }) => {
   return Widget.Box({
     className: "connection_button",
     vexpand: false,
@@ -36,13 +36,7 @@ const Button = ({ icon, label, connection, onClicked }) => {
             css: "font-size: 14px; font-weight: 600;",
             xalign: 0,
           }),
-          Widget.Label({
-            label: connection,
-            css: "font-size: 12px; color: #666;",
-            maxWidthChars: 12,
-            truncate: "end",
-            xalign: 0,
-          })
+          wlabel,
         ]
       })
     ]
@@ -61,13 +55,21 @@ export default function() {
       Button({
         icon: 'network-wireless-signal-excellent',
         label: 'Wi-Fi',
-        connection: SSID.value,
+        wlabel: Widget.Label({
+          label: SSID.value,
+          css: "font-size: 12px; color: #666;",
+          xalign: 0,
+        }),
         onClicked: () => { }
       }),
       Button({
         icon: 'bluetooth-active-symbolic',
         label: 'Bluetooth',
-        connection: BLUETOOTH.value,
+        wlabel: Widget.Label().poll(1000, (self) => {
+          self.label = BLUETOOTH.value;
+          self.css = "font-size: 12px; color: #666;";
+          self.xalign = 0;
+        }),
         onClicked: () => { }
       }),
     ],
