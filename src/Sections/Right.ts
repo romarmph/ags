@@ -3,6 +3,7 @@ import ControlPanel from "src/Panels/ControlPanel";
 
 const BluetoothService = await Service.import("bluetooth");
 const NotificationService = await Service.import("notifications");
+const BatteryService = await Service.import("battery");
 
 
 const TimeIndicator = Widget.Button({
@@ -74,11 +75,41 @@ const NotificationIndicator = Widget.Button({
 	}),
 });
 
+
+const BatteryIcon = (charging: boolean) => Widget.Icon({
+	icon: BatteryService.bind("percent").as(percent => {
+		const roundedBatteryLevel = Math.round(percent / 10) * 10;
+		const batteryState = charging ? "-charging" : "";
+		return "battery-level-" + roundedBatteryLevel + batteryState + "-symbolic";
+	}),
+});
+
+const BatteryIndicator = Widget.Button({
+	className: "control_button",
+	child: Widget.Box({
+		spacing: 4,
+		children: [
+			Widget.Stack({
+				children: {
+					charging: BatteryIcon(true),
+					discharging: BatteryIcon(false),
+				},
+				shown: BatteryService.bind("charging").as(charging => charging ? "charging" : "discharging"),
+			}),
+			Widget.Label({
+				label: BatteryService.bind("percent").as(percent => percent + "%"),
+				css: "font-size: 12px;",
+			}),
+		],
+	}),
+})
+
 export default function() {
 	return Widget.Box({
 		hpack: "end",
 		children: [
 			ControlPanelIndicator,
+			BatteryIndicator,
 			TimeIndicator,
 			NotificationIndicator,
 		],
