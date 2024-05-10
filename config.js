@@ -2,7 +2,6 @@
 const main = '/tmp/ags/main.js';
 
 try {
-    console.log(App.configDir);
     await Utils.execAsync([
         'bun', 'build', `${App.configDir}/main.ts`,
         '--outfile', main,

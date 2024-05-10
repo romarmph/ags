@@ -6,6 +6,7 @@ import MusicPlayer from "src/Panels/Components/MusicPlayer";
 import WifiBluetooth from "./Components/WifiBluetooth";
 
 const AudioService = await Service.import("audio");
+const Mpris = await Service.import("mpris");
 
 const Slider = ({ icon, value, onChange }) => {
   return Widget.Box({
@@ -30,6 +31,7 @@ export default function() {
     Widget.Window({
       name: "control-panel",
       layer: "overlay",
+      monitor: 1,
       anchor: ['bottom', 'right'],
       child: Widget.Box({
         hexpand: true,
@@ -49,6 +51,7 @@ export default function() {
               UserHeader(),
               WifiBluetooth(),
               MusicPlayer(),
+              Mpris.players.length > 0 ? MusicPlayer() : Widget.Box(),
               Slider({
                 icon: "audio-volume-high-symbolic",
                 value: AudioService["speaker"].bind("volume"),

@@ -7,6 +7,7 @@ export default function() {
     Widget.Window({
       name: "calendar",
       layer: "overlay",
+      monitor: 1,
       anchor: ['bottom', 'right'],
       child: Widget.Box({
         className: "panel-container",
