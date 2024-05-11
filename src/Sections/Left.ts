@@ -1,9 +1,17 @@
 const HyprlandService = await Service.import("hyprland");
 
 const AppGrid = Widget.Button({
-  className: "app_grid_btn",
+  className: "control_button",
   cursor: "pointer",
   child: Widget.Icon("view-grid-symbolic"),
+});
+
+const WallpaperList = Widget.Button({
+  className: "control_button",
+  cursor: "pointer",
+  child: Widget.Icon({
+    icon: "viewimage",
+  }),
 });
 
 const WorkspaceIndicator = Widget.Box({
@@ -25,9 +33,9 @@ const WorkspaceIndicator = Widget.Box({
   ),
 });
 
-export default function () {
+export default function() {
   return Widget.Box({
     hpack: "start",
-    children: [AppGrid, WorkspaceIndicator],
+    children: [AppGrid, WallpaperList, WorkspaceIndicator],
   });
 }

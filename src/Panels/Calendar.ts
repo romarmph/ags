@@ -25,5 +25,5 @@ export default function() {
     })
   )
 
-  return PanelController(calendarRevealer, allRevealers);
+  return PanelController(calendarRevealer);
 }

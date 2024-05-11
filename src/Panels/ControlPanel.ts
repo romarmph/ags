@@ -68,5 +68,5 @@ export default function() {
     })
   )
 
-  return PanelController(controlPanelRevealer, allRevealers);
+  return PanelController(controlPanelRevealer);
 }

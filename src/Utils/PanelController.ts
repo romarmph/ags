@@ -1,8 +1,9 @@
 import { Variable } from 'resource:///com/github/Aylur/ags/variable.js'
+import { allRevealers } from 'src/Panels/revealers';
 
-export default function(revealer: Variable<boolean>, revealersToHide: Variable<boolean>[]) {
+export default function(revealer: Variable<boolean>) {
   const hide = () => {
-    revealersToHide.forEach((variable) => {
+    allRevealers.forEach((variable) => {
       if (revealer === variable) return;
       variable.value = false;
     });
