@@ -9,10 +9,12 @@ const AudioService = await Service.import("audio");
 
 const Slider = ({ icon, value, onChange }) => {
   return Widget.Box({
-    className: "slider-container",
     spacing: 8,
     children: [
-      Widget.Icon(icon),
+      Widget.Icon({
+        icon: icon,
+        size: 20,
+      }),
       Widget.Slider({
         value: value,
         onChange: onChange,
@@ -25,19 +27,19 @@ const Slider = ({ icon, value, onChange }) => {
 }
 
 const Sliders = Widget.Box({
-  className: "widget-sectionA",
-  spacing: 8,
+  className: "widget-section",
   vertical: true,
+  spacing: 12,
   children: [
     Slider({
       icon: "brightness_5",
-      value: BrightnessService.screen_value,
-      onChange: (self) => BrightnessService.screen_value = value.value,
+      value: BrightnessService.bind("screen_value"),
+      onChange: ({ value }) => BrightnessService.screen_value = value,
     }),
     Slider({
-      icon: "audio-volume-muted-symbolic",
-      value: AudioService.speaker.volume,
-      onChange: (self) => AudioService.speaker.volume = value.value,
+      icon: "volume_up",
+      value: AudioService.speaker.bind("volume"),
+      onChange: ({ value }) => AudioService.speaker.volume = value,
     }),
   ]
 });

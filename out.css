@@ -36,6 +36,16 @@
   min-height: 8px;
 }
 
+.slider trough {
+  background-color: rgba(111, 116, 170, 0.1);
+  border-radius: 4px;
+}
+.slider highlight {
+  min-height: 16px;
+  background-color: #2B49E5;
+  border-radius: 4px;
+}
+
 /* NOTE: ---------------------------------------------> Right Section */
 calendar {
   all: unset;
@@ -72,20 +82,6 @@ calendar:indeterminate {
   padding: 12px;
   border-radius: 12px;
   min-width: 300px;
-}
-
-.slider-container {
-  padding: 16px 8px;
-}
-
-.slider trough {
-  background-color: rgba(75, 77, 107, 0.5);
-  border-radius: 12px;
-}
-.slider highlight {
-  min-height: 16px;
-  background-color: #F4F7F8;
-  border-radius: 12px;
 }
 
 .face {

@@ -103,6 +103,19 @@ $red : #ec5f67;
 	}
 }
 
+.slider {
+	& trough {
+		background-color: $tertiary-bg;
+		border-radius: $radius-3;
+	}
+
+	& highlight {
+		min-height: 16px;
+		background-color: $accent;
+		border-radius: $radius-3;
+	}
+}
+
 
 /* NOTE: ---------------------------------------------> Right Section */
 
@@ -151,22 +164,7 @@ calendar {
 	min-width: 300px;
 }
 
-.slider-container {
-	padding: 16px 8px;
-}
 
-.slider {
-	& trough {
-		background-color: $fgDark3;
-		border-radius: $radius-1;
-	}
-
-	& highlight {
-		min-height: 16px;
-		background-color: $primary-fg;
-		border-radius: $radius-1;
-	}
-}
 
 .face {
 	border-radius: 50%;
