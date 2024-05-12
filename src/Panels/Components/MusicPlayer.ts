@@ -33,6 +33,7 @@ function MusicMeta() {
   return Widget.Box({
     className: 'meta',
     vertical: true,
+    spacing: 4,
     children: [
       Title,
       Artist
@@ -123,7 +124,7 @@ export default function() {
   })
 
   return Widget.Box({
-    className: 'music_player',
+    className: 'widget-section',
     vexpand: false,
     spacing: 10,
     children: [
@@ -131,10 +132,11 @@ export default function() {
       Widget.Box({
         className: 'right',
         vertical: true,
+        spacing: 4,
         children: [
           MusicMeta(),
+          Position(),
           Controls(),
-          Position()
         ]
       })
     ]

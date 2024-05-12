@@ -1,0 +1,11 @@
+.widget-container {
+	padding: 0.1px;
+}
+
+.widget {
+	@include widget;
+}
+
+.widget-section {
+	@include widget-section;
+}

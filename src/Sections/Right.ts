@@ -8,7 +8,7 @@ const BatteryService = await Service.import("battery");
 
 const TimeIndicator = Widget.Button({
 	attribute: Calendar(),
-	className: "time_indicator",
+	className: "bar-button",
 	hpack: "center",
 	child: Widget.Label().poll(
 		1000,
@@ -17,75 +17,60 @@ const TimeIndicator = Widget.Button({
 			const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 			const time = date.toLocaleTimeString().split(" ")[0].split(":").slice(0, 2).join(":") + " " + date.toLocaleTimeString().split(" ")[1];
 			self.set_text(days[date.getDay()] + " " + time);
-			self.css = "font-weight: 600";
+			self.css = "font-weight: 400; font-size: 12px;";
 		}
 	),
 	onClicked: (self) => self.attribute.toggle(),
 });
 
 const ControlPanelIndicator = Widget.Button({
-	className: "control_button",
+	className: "bar-button",
 	attribute: ControlPanel(),
 	child: Widget.Box({
 		spacing: 12,
 		children: [
 			Widget.Icon({
-				icon: "network-wireless-signal-excellent",
+				icon: "wifi-on",
+				size: 16,
 			}),
-			Widget.Stack({
-				shown: BluetoothService.bind('enabled').as(on => on ? 'active' : 'inactive'),
-				children: {
-					active: Widget.Icon({
-						icon: "bluetooth-active-symbolic",
-					}),
-					inactive: Widget.Icon({
-						icon: "bluetooth-disabled-symbolic",
-					}),
-				}
-			}),
-			Widget.Icon('audio-volume-high-symbolic'),
 			Widget.Icon({
-				icon: 'display-brightness-symbolic',
-				size: 14,
+				icon: "auto_awesome_mosaic",
+				size: 16,
 			}),
 		],
 	}),
 	onClicked: (self) => self.attribute.toggle(),
 });
 
-const NotificationIndicator = Widget.Button({
-	className: "control_button",
-	child: Widget.Stack({
-		children: {
-			empty: Widget.Icon({
-				icon: "notifications",
-			}),
-			notifications: Widget.Box({
-				spacing: 8,
-				children: [
-					Widget.Icon({
-						icon: "notifications-disabled",
-					}),
-				],
-			}),
-		},
-		shown: NotificationService.bind("popups").as(popups => {
-			return popups.length > 0 ? "notifications" : "empty";
-		}),
-	}),
-});
+
 
 
 const BatteryIcon = (charging: boolean) => Widget.Icon({
 	icon: BatteryService.bind("percent").as(percent => {
 		const roundedBatteryLevel = Math.round(percent / 10) * 10;
-		const batteryState = charging ? "-charging" : "";
-		return "battery-level-" + roundedBatteryLevel + batteryState + "-symbolic";
+		if (roundedBatteryLevel <= 10) {
+			return "battery_critical";
+		} else if (roundedBatteryLevel <= 20) {
+			return "battery" + (charging ? "_charging" : "") + "_20";
+		} else if (roundedBatteryLevel <= 30) {
+			return "battery" + (charging ? "_charging" : "") + "_30";
+		} else if (roundedBatteryLevel <= 50) {
+			return "battery" + (charging ? "_charging" : "") + "_50";
+		} else if (roundedBatteryLevel <= 60) {
+			return "battery" + (charging ? "_charging" : "") + "_60";
+		} else if (roundedBatteryLevel <= 80) {
+			return "battery" + (charging ? "_charging" : "") + "_80";
+		} else if (roundedBatteryLevel <= 90) {
+			return "battery" + (charging ? "_charging" : "") + "_90";
+		} else {
+			return "battery" + (charging ? "_charging" : "") + "_full";
+		}
 	}),
+	size: 18,
 });
 
 const BatteryIndicator = Widget.Button({
-	className: "control_button",
+	className: "bar-button",
 	child: Widget.Box({
 		spacing: 4,
 		children: [
@@ -111,7 +96,6 @@ export default function() {
 			ControlPanelIndicator,
 			BatteryIndicator,
 			TimeIndicator,
-			NotificationIndicator,
 		],
 	});
 }

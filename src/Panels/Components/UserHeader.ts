@@ -4,50 +4,55 @@ import Gtk from 'gi://Gtk?version=3.0'
 const username = Utils.exec(`whoami`)
 const Popover = Widget.subclass(Gtk.Popover);
 
+const PowerMenuButtons = Widget.Box({
+  spacing: 8,
+  children: [
+    Widget.Button({
+      className: "power-button",
+      child: Widget.Icon({
+        icon: 'power',
+        size: 18
+      }),
+      onPrimaryClick: () => Utils.subprocess(
+        [`systemctl`, `poweroff`],
+        () => { }
+      )
+    }),
+    Widget.Button({
+      className: "power-button",
+      child: Widget.Icon({
+        icon: 'restart',
+        size: 18
+      }),
+      onPrimaryClick: () => Utils.subprocess(
+        [`systemctl`, `reboot`],
+        () => { }
+      )
+    }),
+    Widget.Button({
+      className: "power-button",
+      child: Widget.Icon({
+        icon: 'moon',
+        size: 18,
+      }),
+      onPrimaryClick: () => {
+        PowerMenu.popdown()
+        Utils.subprocess(
+          [`bash`, `-c`, `systemctl suspend && swaylock`],
+          () => { }
+        )
+      }
+    }),
+  ]
+});
+
 function ShutdownButton() {
   const PowerMenu = Popover({
     setup: self => {
       self.set_relative_to(self)
       self.set_position(Gtk.PositionType.LEFT)
     },
-    child: Widget.Box({
-      spacing: 8,
-      children: [
-        Widget.Button({
-          child: Widget.Icon({
-            icon: 'system-shutdown-symbolic',
-            size: 18
-          }),
-          onPrimaryClick: () => Utils.subprocess(
-            [`systemctl`, `poweroff`],
-            () => { }
-          )
-        }),
-        Widget.Button({
-          child: Widget.Icon({
-            icon: 'system-restart-panel',
-            size: 18
-          }),
-          onPrimaryClick: () => Utils.subprocess(
-            [`systemctl`, `reboot`],
-            () => { }
-          )
-        }),
-        Widget.Button({
-          child: Widget.Icon({
-            icon: 'weather-clear-night-symbolic',
-            size: 12
-          }),
-          onPrimaryClick: () => {
-            PowerMenu.popdown()
-            Utils.subprocess(
-              [`bash`, `-c`, `systemctl suspend && swaylock`],
-              () => { }
-            )
-          }
-        }),
-      ]
-    })
+    child: PowerMenuButtons,
   })
 
   return Widget.Button({
@@ -88,22 +93,24 @@ export default function() {
   })
 
   return Widget.Box({
-    className: 'user_box',
+    className: 'widget-section',
     spacing: 12,
     hexpand: true,
     children: [
+
       Face,
       Widget.Box({
         className: 'details',
         vpack: 'center',
         spacing: 2,
         vertical: true,
+        hexpand: true,
         children: [
           Username,
           WM
         ]
       }),
-      ShutdownButton()
+      PowerMenuButtons,
     ]
   })
 }

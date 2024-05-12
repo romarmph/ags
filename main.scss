@@ -1,7 +1,26 @@
-$bg : rgba(19, 20, 30, 0.8);
+$primary-bg: rgb(8, 10, 26, 0.8);
+
+$secondary-bg: rgb(207, 218, 231, 0.05);
+$secondary-bg-light: rgb(207, 218, 231, 0.1);
+$secondary-bg-dark: rgb(207, 218, 231, 0.03);
+
+$tertiary-bg: rgb(111, 116, 170, 0.1);
+$tertiary-bg-light: rgb(111, 116, 170, 0.15);
+$tertiary-bg-dark: rgb(111, 116, 170, 0.05);
+
+$primary-fg: #F4F7F8;
+$secondary-fg: #D9D9D9;
+
+$accent: #2B49E5;
+$accent-light: #3C59F2;
+$accent-dark: #223BBB;
+
+$radius-1: 12px;
+$radius-2: 8px;
+$radius-3: 4px;
+
 $bg1 : rgba(19, 20, 30, 0.75);
 $bg2 : rgba(19, 20, 30, 0.5);
-$fg : #bbc2cf;
 
 // Convert all fgDark to rgba
 $fgDark1: rgba(38, 39, 56, 0.5);
@@ -17,14 +36,11 @@ $magenta : #c678dd;
 $blue : #2b96fb;
 $red : #ec5f67;
 
-$borderRadius1: 8px;
-$borderRadius2: 6px;
-$borderRadius3: 4px;
 
 * {
 	all: unset;
 	font-family: "sans-serif";
-	color: $fg;
+	color: $primary-fg;
 }
 
 @mixin section {
@@ -32,69 +48,57 @@ $borderRadius3: 4px;
 	padding: 12px;
 }
 
-@mixin button {
+.bar {
+	background: $primary-bg;
+}
+
+@mixin widget {
+	padding: 12px;
+	border-radius: $radius-1;
+	background: $primary-bg;
+}
+
+@mixin widget-section {
+	border-radius: $radius-2;
+	background: $secondary-bg;
+	padding: 12px;
+}
+
+@mixin widget-section-hover {
 	&:hover {
-		background: $fgDark2;
+		background: $secondary-bg-light;
 	}
 }
 
-@mixin panelChild {
-	background: rgba(69, 69, 89, 0.5);
-	border-radius: $borderRadius2;
-	border: 1px solid rgba(187, 194, 207, 0.2);
+@mixin widget-section-active {
+
+	&:active {
+		background: $secondary-bg-dark;
+	}
 }
 
-.bar {
-	background: $bg;
-}
-
-.panel-container {
-	padding: 8px;
-}
-
-.panel {
-	background: rgba(35, 35, 46, 0.66);
-	padding: 16px;
-	border-radius: $borderRadius1;
-	border: 1px solid rgba(187, 194, 207, 0.2);
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-
-
-/* NOTE: ---------------------------------------------> Left Section */
-.app_grid_btn {
+.bar-button {
 	padding: 0 8px 0 8px;
-	border-radius: $borderRadius2;
-	font-size: 18px;
+	border-radius: $radius-2;
+	font-size: 10px;
 
-	@include button;
-}
-
-.time_indicator {
-	padding: 0 8px 0 8px;
-	border-radius: $borderRadius2;
-
-	@include button;
+	@include widget-section-hover;
+	@include widget-section-active;
 }
 
 .workspace_indicator {
 	@include section;
 
 	& .workspace {
-		background: $fgDark2;
-		border-radius: 12px;
+		background: $secondary-bg;
+		border-radius: $radius-1;
 		min-width: 8px;
 		min-height: 8px;
 		transition: min-height 100ms cubic-bezier(1, 0, 0, 1);
 
 		&.active {
-			background: $fg;
+			background: $primary-fg;
 			min-height: 8px;
-		}
-
-		&:hover {
-			background: $fgDark2;
 		}
 	}
 }
@@ -102,57 +106,65 @@ $borderRadius3: 4px;
 
 /* NOTE: ---------------------------------------------> Right Section */
 
-.calendar {
-	color: $fg;
-	border-radius: $borderRadius1;
+calendar {
+	all: unset;
 
-	&.hightlight {
-		color: $yellow;
+	button {
+		background: $red;
 	}
 
-	&.selected {
-		color: $cyan;
-	}
-
-	& button {
-		color: $orange;
-		background: $blue;
+	&.button {
+		background: none;
 
 		&:hover {
-			background: $bg2;
+			background: $fgDark2;
 		}
 	}
-}
 
-.control_button {
-	padding: 0 4px 0 4px;
-	border-radius: $borderRadius2;
-	font-size: 18px;
+	&:selected {
+		color: $blue;
+		background: none;
+	}
 
-	@include button;
+	&.header {
+		background-color: transparent;
+		border: none;
+		color: $primary-fg;
+	}
+
+	&.highlight {
+		background-color: transparent;
+		color: transparentize($primary-fg, 0.5);
+	}
+
+	&:indeterminate {
+		color: transparentize($primary-fg, 0.9);
+	}
+
+	background: $primary-bg;
+	font-size: 1.1rem;
 }
 
 .control-panel {
 	padding: 12px;
-	border-radius: $borderRadius1;
+	border-radius: $radius-1;
 	min-width: 300px;
 }
 
 .slider-container {
 	padding: 16px 8px;
-	@include panelChild;
 }
 
 .slider {
 	& trough {
 		background-color: $fgDark3;
-		border-radius: $borderRadius1;
+		border-radius: $radius-1;
 	}
 
 	& highlight {
 		min-height: 16px;
-		background-color: $fg;
-		border-radius: $borderRadius1;
+		background-color: $primary-fg;
+		border-radius: $radius-1;
 	}
 }
 
@@ -161,18 +173,16 @@ $borderRadius3: 4px;
 }
 
 .user_box {
-	@include panelChild;
 	padding: 8px;
 }
 
 .music_player {
-	@include panelChild;
 	padding: 8px;
 
 }
 
 .progress {
-	border-radius: $borderRadius2;
+	border-radius: $radius-2;
 	padding-bottom: 4px;
 
 	& trough {
@@ -180,7 +190,7 @@ $borderRadius3: 4px;
 		background: $fgDark3;
 
 		& progress {
-			background: $fg;
+			background: $primary-fg;
 			border-radius: 8px;
 		}
 	}
@@ -188,11 +198,12 @@ $borderRadius3: 4px;
 
 .connection_box {
 	& .connection_button {
-		@include panelChild;
 		padding: 0 8px 0 8px;
-		border-radius: $borderRadius2;
+		border-radius: $radius-2;
 		font-size: 18px;
 
-		@include button;
 	}
 }
+
+@import "src/Panels/style.scss";
+@import "src/Panels/Components/style.scss"

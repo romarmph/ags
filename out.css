@@ -1,41 +1,23 @@
 * {
   all: unset;
   font-family: "sans-serif";
-  color: #bbc2cf;
+  color: #F4F7F8;
 }
 
 .bar {
-  background: rgba(19, 20, 30, 0.8);
+  background: rgba(8, 10, 26, 0.8);
 }
 
-.panel-container {
-  padding: 8px;
-}
-
-.panel {
-  background: rgba(35, 35, 46, 0.66);
-  padding: 16px;
+.bar-button {
+  padding: 0 8px 0 8px;
   border-radius: 8px;
-  border: 1px solid rgba(187, 194, 207, 0.2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 10px;
 }
-
-/* NOTE: ---------------------------------------------> Left Section */
-.app_grid_btn {
-  padding: 0 8px 0 8px;
-  border-radius: 6px;
-  font-size: 18px;
+.bar-button:hover {
+  background: rgba(207, 218, 231, 0.1);
 }
-.app_grid_btn:hover {
-  background: rgba(57, 58, 82, 0.5);
-}
-
-.time_indicator {
-  padding: 0 8px 0 8px;
-  border-radius: 6px;
-}
-.time_indicator:hover {
-  background: rgba(57, 58, 82, 0.5);
+.bar-button:active {
+  background: rgba(207, 218, 231, 0.03);
 }
 
 .workspace_indicator {
@@ -43,69 +25,67 @@
   padding: 12px;
 }
 .workspace_indicator .workspace {
-  background: rgba(57, 58, 82, 0.5);
+  background: rgba(207, 218, 231, 0.05);
   border-radius: 12px;
   min-width: 8px;
   min-height: 8px;
   transition: min-height 100ms cubic-bezier(1, 0, 0, 1);
 }
 .workspace_indicator .workspace.active {
-  background: #bbc2cf;
+  background: #F4F7F8;
   min-height: 8px;
-}
-.workspace_indicator .workspace:hover {
-  background: rgba(57, 58, 82, 0.5);
 }
 
 /* NOTE: ---------------------------------------------> Right Section */
-.calendar {
-  color: #bbc2cf;
-  border-radius: 8px;
+calendar {
+  all: unset;
+  background: rgba(8, 10, 26, 0.8);
+  font-size: 1.1rem;
 }
-.calendar.hightlight {
-  color: #b89933;
+calendar button {
+  background: #ec5f67;
 }
-.calendar.selected {
-  color: #20a3c7;
+calendar.button {
+  background: none;
 }
-.calendar button {
-  color: #FF8800;
-  background: #2b96fb;
-}
-.calendar button:hover {
-  background: rgba(19, 20, 30, 0.5);
-}
-
-.control_button {
-  padding: 0 4px 0 4px;
-  border-radius: 6px;
-  font-size: 18px;
-}
-.control_button:hover {
+calendar.button:hover {
   background: rgba(57, 58, 82, 0.5);
+}
+calendar:selected {
+  color: #2b96fb;
+  background: none;
+}
+calendar.header {
+  background-color: transparent;
+  border: none;
+  color: #F4F7F8;
+}
+calendar.highlight {
+  background-color: transparent;
+  color: rgba(244, 247, 248, 0.5);
+}
+calendar:indeterminate {
+  color: rgba(244, 247, 248, 0.1);
 }
 
 .control-panel {
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 12px;
   min-width: 300px;
 }
 
 .slider-container {
   padding: 16px 8px;
-  background: rgba(69, 69, 89, 0.5);
-  border-radius: 6px;
-  border: 1px solid rgba(187, 194, 207, 0.2);
 }
 
 .slider trough {
   background-color: rgba(75, 77, 107, 0.5);
-  border-radius: 8px;
+  border-radius: 12px;
 }
 .slider highlight {
   min-height: 16px;
-  background-color: #bbc2cf;
-  border-radius: 8px;
+  background-color: #F4F7F8;
+  border-radius: 12px;
 }
 
 .face {
@@ -113,21 +93,15 @@
 }
 
 .user_box {
-  background: rgba(69, 69, 89, 0.5);
-  border-radius: 6px;
-  border: 1px solid rgba(187, 194, 207, 0.2);
   padding: 8px;
 }
 
 .music_player {
-  background: rgba(69, 69, 89, 0.5);
-  border-radius: 6px;
-  border: 1px solid rgba(187, 194, 207, 0.2);
   padding: 8px;
 }
 
 .progress {
-  border-radius: 6px;
+  border-radius: 8px;
   padding-bottom: 4px;
 }
 .progress trough {
@@ -135,18 +109,63 @@
   background: rgba(75, 77, 107, 0.5);
 }
 .progress trough progress {
-  background: #bbc2cf;
+  background: #F4F7F8;
   border-radius: 8px;
 }
 
 .connection_box .connection_button {
-  background: rgba(69, 69, 89, 0.5);
-  border-radius: 6px;
-  border: 1px solid rgba(187, 194, 207, 0.2);
   padding: 0 8px 0 8px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 18px;
 }
-.connection_box .connection_button:hover {
-  background: rgba(57, 58, 82, 0.5);
+
+.widget-container {
+  padding: 0.1px;
+}
+
+.widget {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(8, 10, 26, 0.8);
+}
+
+.widget-section {
+  border-radius: 8px;
+  background: rgba(207, 218, 231, 0.05);
+  padding: 12px;
+}
+
+.power-button {
+  border-radius: 8px;
+  background: rgba(207, 218, 231, 0.05);
+  padding: 12px;
+  padding: 8px;
+}
+.power-button:hover {
+  background: rgba(207, 218, 231, 0.1);
+}
+.power-button:active {
+  background: rgba(207, 218, 231, 0.03);
+}
+
+.widget-button {
+  border-radius: 8px;
+  background: rgba(207, 218, 231, 0.05);
+  padding: 12px;
+}
+.widget-button:hover {
+  background: rgba(207, 218, 231, 0.1);
+}
+.widget-button:active {
+  background: rgba(207, 218, 231, 0.03);
+}
+
+.active {
+  background: #2B49E5;
+}
+.active:hover {
+  background: #3C59F2;
+}
+.active:active {
+  background: #223BBB;
 }

@@ -1,22 +1,17 @@
 const HyprlandService = await Service.import("hyprland");
 
 const AppGrid = Widget.Button({
-  className: "control_button",
-  cursor: "pointer",
-  child: Widget.Icon("view-grid-symbolic"),
-});
-
-const WallpaperList = Widget.Button({
-  className: "control_button",
+  className: "bar-button",
   cursor: "pointer",
   child: Widget.Icon({
-    icon: "viewimage",
+    icon: "menu",
+    size: 22,
   }),
 });
 
 const WorkspaceIndicator = Widget.Box({
   className: "workspace_indicator",
-  spacing: 4,
+  spacing: 6,
   children: Array.from({ length: 7 }).map((_, i) =>
     Widget.Button({
       className: "workspace",
@@ -36,6 +31,6 @@ const WorkspaceIndicator = Widget.Box({
 export default function() {
   return Widget.Box({
     hpack: "start",
-    children: [AppGrid, WallpaperList, WorkspaceIndicator],
+    children: [AppGrid, WorkspaceIndicator],
   });
 }

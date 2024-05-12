@@ -1,12 +1,11 @@
 import PanelController from "src/Utils/PanelController";
 import BrightnessService from "src/Services/Brightness";
-import { allRevealers, controlPanelRevealer } from "./revealers";
+import { controlPanelRevealer } from "./revealers";
 import UserHeader from "src/Panels/Components/UserHeader";
 import MusicPlayer from "src/Panels/Components/MusicPlayer";
-import WifiBluetooth from "./Components/WifiBluetooth";
+import ControlButtons from "./Components/WifiBluetooth";
 
 const AudioService = await Service.import("audio");
-const Mpris = await Service.import("mpris");
 
 const Slider = ({ icon, value, onChange }) => {
   return Widget.Box({
@@ -25,6 +24,24 @@ const Slider = ({ icon, value, onChange }) => {
   })
 }
 
+const Sliders = Widget.Box({
+  className: "widget-sectionA",
+  spacing: 8,
+  vertical: true,
+  children: [
+    Slider({
+      icon: "brightness_5",
+      value: BrightnessService.screen_value,
+      onChange: (self) => BrightnessService.screen_value = value.value,
+    }),
+    Slider({
+      icon: "audio-volume-muted-symbolic",
+      value: AudioService.speaker.volume,
+      onChange: (self) => AudioService.speaker.volume = value.value,
+    }),
+  ]
+});
+
 
 export default function() {
   App.addWindow(
@@ -32,35 +49,28 @@ export default function() {
       name: "control-panel",
       layer: "overlay",
       monitor: 1,
-      anchor: ['bottom', 'right'],
+      anchor: ['top', 'right'],
+      margins: [8, 8, 0, 0],
       child: Widget.Box({
         hexpand: true,
         vexpand: true,
-        className: "panel-container",
+        widthRequest: 400,
+        className: "widget-container",
         child: Widget.Revealer({
           revealChild: controlPanelRevealer.bind(),
-          transition: 'slide_up',
+          transition: 'slide_down',
           transitionDuration: 300,
           child: Widget.Box({
-            className: "panel control-panel",
+            className: "widget",
             hexpand: true,
             vertical: true,
             spacing: 12,
             vpack: "center",
             children: [
               UserHeader(),
-              WifiBluetooth(),
-              Mpris.players.length > 0 ? MusicPlayer() : Widget.Box(),
-              Slider({
-                icon: "audio-volume-high-symbolic",
-                value: AudioService["speaker"].bind("volume"),
-                onChange: ({ value }) => AudioService["speaker"].volume = value,
-              }),
-              Slider({
-                icon: "display-brightness-symbolic",
-                value: BrightnessService.bind("screen_value"),
-                onChange: ({ value }) => BrightnessService.screen_value = value,
-              }),
+              Sliders,
+              ControlButtons(),
+              MusicPlayer(),
             ],
           }),
         }),

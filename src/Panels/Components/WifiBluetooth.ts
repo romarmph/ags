@@ -1,47 +1,81 @@
+import { Button } from "resource:///com/github/Aylur/ags/widgets/button.js";
+import Asusctl from "src/Services/Asusctl";
+import Gtk from "types/@girs/gtk-3.0/gtk-3.0";
+
 const NetworkService = await Service.import("network");
 const BluetoothService = await Service.import("bluetooth");
 
-const SSID = Variable("No connection", {
-  poll: [1000, () => NetworkService.wifi.ssid],
+
+const ButtonContents = ({ icon, label }) => Widget.Box({
+  spacing: 8,
+  children: [
+    Widget.Icon({
+      icon: icon,
+      size: 16,
+    }),
+    Widget.Label({
+      label: label,
+    }),
+  ],
 });
 
-const BLUETOOTH = Variable("No device connected", {
-  poll: [1000, () => {
-    if (!BluetoothService.connected_devices.length) return "No device";
-    return BluetoothService.connected_devices.map(device => device.name).join(", ");
-  }],
+const WifiButton = () => Widget.Button({
+  setup: (self) => {
+    self.hook(NetworkService, (self) => {
+      self.child = ButtonContents({
+        icon: NetworkService.wifi.enabled ? "wifi-on" : "wifi-off",
+        label: NetworkService.wifi.ssid ? NetworkService.wifi.ssid : "Wi-Fi",
+      });
+      self.class_name = NetworkService.wifi.enabled ? "widget-button active" : "widget-button";
+      self.on_clicked = () => NetworkService.toggleWifi();
+    });
+  }
+});
+
+const BluetoothButton = () => Widget.Button({
+  setup: (self) => {
+    self.hook(BluetoothService, (self) => {
+      self.child = ButtonContents({
+        icon: BluetoothService.enabled ? "bluetooth_enabled" : "bluetooth_disabled",
+        label: BluetoothService.connected_devices.length ? BluetoothService.connected_devices.map(device => device.name).join(", ") : "Bluetooth",
+      });
+      self.class_name = BluetoothService.enabled ? "widget-button active" : "widget-button";
+      self.on_clicked = () => BluetoothService.toggle();
+    });
+  }
 })
 
-const Button = ({ icon, label, onClicked, wlabel }) => {
-  return Widget.Box({
-    className: "connection_button",
-    vexpand: false,
-    vpack: "center",
-    css: "padding: 8px;",
-    spacing: 8,
-    children: [
-      Widget.Icon({
-        icon: icon,
-        size: 24,
-        css: "padding: 8px; color: white; padding: 4px; border-radius: 50%; background-color: #386fd6;"
-      }),
-      Widget.Box({
-        vertical: true,
-        hpack: "start",
-        vpack: "start",
-        spacing: 4,
-        children: [
-          Widget.Label({
-            label: label,
-            css: "font-size: 14px; font-weight: 600;",
-            xalign: 0,
-          }),
-          wlabel,
-        ]
-      })
-    ]
-  })
-}
+const PowerProfileButton = () => Widget.Button({
+  setup: (self) => {
+    self.hook(Asusctl, (self) => {
+      self.child = ButtonContents({
+        icon: "toys",
+        label: Asusctl.profile,
+      });
+      self.class_name = "widget-button";
+      self.on_clicked = () => Asusctl.nextProfile();
+    });
+  }
+});
+
+const GPUModeButton = () => Widget.Button({
+  setup: (self) => {
+    self.hook(Asusctl, (self) => {
+      self.child = ButtonContents({
+        icon: "memory",
+        label: Asusctl.mode,
+      });
+      self.class_name = "widget-button";
+      self.on_clicked = () => Asusctl.nextMode();
+    });
+  }
+});
+
+const Row = (children: Button<Gtk.Widget, unknown>[]) => Widget.Box({
+  homogeneous: true,
+  spacing: 12,
+  children: children,
+});
 
 export default function() {
   return Widget.Box({
@@ -50,28 +84,11 @@ export default function() {
     hexpand: true,
     vexpand: true,
     homogeneous: true,
+    vertical: true,
     spacing: 12,
     children: [
-      Button({
-        icon: 'network-wireless-signal-excellent',
-        label: 'Wi-Fi',
-        wlabel: Widget.Label({
-          label: SSID.value,
-          css: "font-size: 12px; color: #666;",
-          xalign: 0,
-        }),
-        onClicked: () => { }
-      }),
-      Button({
-        icon: 'bluetooth-active-symbolic',
-        label: 'Bluetooth',
-        wlabel: Widget.Label().poll(1000, (self) => {
-          self.label = BLUETOOTH.value;
-          self.css = "font-size: 12px; color: #666;";
-          self.xalign = 0;
-        }),
-        onClicked: () => { }
-      }),
+      Row([WifiButton(), BluetoothButton()]),
+      Row([PowerProfileButton(), GPUModeButton()]),
     ],
   })
 }
