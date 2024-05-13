@@ -1,12 +1,17 @@
+import Wallpapers from "src/Panels/Wallpapers"
+
 const HyprlandService = await Service.import("hyprland");
 
+
 const AppGrid = Widget.Button({
+  attribute: Wallpapers(),
   className: "bar-button",
   cursor: "pointer",
   child: Widget.Icon({
     icon: "menu",
     size: 22,
   }),
+  onClicked: (self) => self.attribute.toggle(),
 });
 
 const WorkspaceIndicator = Widget.Box({

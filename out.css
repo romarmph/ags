@@ -131,6 +131,21 @@ calendar:indeterminate {
   padding: 12px;
 }
 
+.wallpapers {
+  background-color: rgba(8, 10, 26, 0.8);
+  padding: 8px;
+  min-width: 400px;
+}
+
+.overlay {
+  min-width: 400px;
+}
+.overlay box {
+  min-width: 400px;
+  min-height: 200px;
+  border-radius: 8px;
+}
+
 .power-button {
   border-radius: 8px;
   background: rgba(207, 218, 231, 0.05);

@@ -1,8 +1,6 @@
 import Calendar from "src/Panels/Calendar";
 import ControlPanel from "src/Panels/ControlPanel";
 
-const BluetoothService = await Service.import("bluetooth");
-const NotificationService = await Service.import("notifications");
 const BatteryService = await Service.import("battery");
 
 
@@ -34,16 +32,13 @@ const ControlPanelIndicator = Widget.Button({
 				size: 16,
 			}),
 			Widget.Icon({
-				icon: "auto_awesome_mosaic",
+				icon: "control-panel",
 				size: 16,
 			}),
 		],
 	}),
 	onClicked: (self) => self.attribute.toggle(),
 });
-
-
-
 
 const BatteryIcon = (charging: boolean) => Widget.Icon({
 	icon: BatteryService.bind("percent").as(percent => {
