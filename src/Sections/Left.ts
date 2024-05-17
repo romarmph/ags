@@ -1,17 +1,22 @@
-import Wallpapers from "src/Panels/Wallpapers"
 
 const HyprlandService = await Service.import("hyprland");
+const SystemTrayService = await Service.import('systemtray')
 
+const revealSystray = Variable(false)
 
-const AppGrid = Widget.Button({
-  attribute: Wallpapers(),
-  className: "bar-button",
-  cursor: "pointer",
-  child: Widget.Icon({
-    icon: "menu",
-    size: 22,
+const SysTray = Widget.Box({
+  children: SystemTrayService.bind('items').as(items => {
+    return items.map(item => {
+      return Widget.Button({
+        cursor: "pointer",
+        widthRequest: 16,
+        heightRequest: 16,
+        child: Widget.Icon().bind('icon', item, 'icon'),
+        onPrimaryClick: (_, event) => item.activate(event),
+        onSecondaryClick: (_, event) => item.openMenu(event),
+      });
+    });
   }),
-  onClicked: (self) => self.attribute.toggle(),
 });
 
 const WorkspaceIndicator = Widget.Box({
@@ -36,6 +41,6 @@ const WorkspaceIndicator = Widget.Box({
 export default function() {
   return Widget.Box({
     hpack: "start",
-    children: [AppGrid, WorkspaceIndicator],
+    children: [WorkspaceIndicator, SysTray],
   });
 }
